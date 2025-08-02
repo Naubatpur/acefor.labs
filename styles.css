@@ -1,14 +1,8 @@
-/*
-  styles.css
-  This file contains all the custom styles for your website.
-*/
 
-/* Smooth scrolling for anchor links */
 html { 
   scroll-behavior: smooth; 
 }
 
-/* Theme variables for light and dark mode */
 :root {
   --accent: #6b5bfa;
   --primary-bg: #ffffff;
@@ -27,7 +21,6 @@ html {
   --footer-text: #9ca3af;
 }
 
-/* Base body and html styles */
 html, body {
   margin: 0; 
   padding: 0;
@@ -35,59 +28,15 @@ html, body {
   color: var(--primary-text);
   font-family: "Inter", sans-serif;
   transition: var(--transition);
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-x: hidden; 
 }
 
-/* Fade-in-up animation */
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero heading animation */
-.hero-heading {
-  opacity: 0; 
-  animation: fade-in-up .8s ease-out .3s forwards;
-}
 
-/* Button styles and animations */
-.btn {
-  opacity: 0; 
-  transform: translateY(20px);
-  transition: var(--transition);
-}
-.btn-primary {
-  padding: .75rem 1.5rem; 
-  border-radius: .5rem;
-  font-weight: 600; 
-  background: var(--accent); 
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,.1);
-  animation: fade-in-up .8s ease-out .6s forwards;
-}
-.btn-secondary {
-  padding: .75rem 1.5rem; 
-  border-radius: .5rem;
-  font-weight: 600; 
-  background: transparent;
-  border: 2px solid var(--accent); 
-  color: var(--accent);
-  animation: fade-in-up .8s ease-out .8s forwards;
-}
-.btn-primary:hover { 
-  transform: scale(1.05); 
-}
-.btn-secondary:hover {
-  background: var(--accent); 
-  color: #fff;
-  transform: scale(1.05);
-}
-
-/* Marquee animation */
-.marquee-container {
-    overflow: hidden;
-    width: 100%;
-}
 @keyframes marquee-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-60%); }
@@ -99,38 +48,54 @@ html, body {
   animation: marquee-scroll 12s linear infinite;
 }
 
-/* Services section styles */
-#services {
-  background: linear-gradient(135deg,
-    rgba(107,91,250,0.12),
-    rgba(240,78,154,0.12)
-  );
-}
-.service-card {
-  display: flex; flex-direction: column; align-items: center;
-  text-decoration: none; color: inherit;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.4);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  border-radius: .75rem; padding: 1.5rem;
-  transition: var(--transition); will-change: transform;
-  opacity: 0; animation: fade-in-up .6s ease-out forwards;
-}
-.service-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 24px rgba(107, 91, 250, 0.2);
-  color: var(--accent);
-}
-[data-theme="dark"] .service-card {
-  background: rgba(31,41,55,0.3);
-  border: 1px solid rgba(255,255,255,0.2);
+
+.hero-heading {
+  opacity: 0; 
+  animation: fade-in-up .8s ease-out .3s forwards;
 }
 
-/* Other sections */
+
+.btn {
+  opacity: 0; 
+  transform: translateY(20px);
+  transition: var(--transition);
+}
+.btn-primary {
+  padding: .75rem 1.5rem; border-radius: .5rem; font-weight: 600; 
+  background: var(--accent); color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  animation: fade-in-up .8s ease-out .6s forwards;
+}
+.btn-secondary {
+  padding: .75rem 1.5rem; border-radius: .5rem; font-weight: 600; 
+  background: transparent; border: 2px solid var(--accent); color: var(--accent);
+  animation: fade-in-up .8s ease-out .8s forwards;
+}
+.btn-primary:hover { transform: scale(1.05); }
+.btn-secondary:hover { background: var(--accent); color: #fff; transform: scale(1.05); }
+
+/*
+================================
+Section & Card Styles
+================================
+*/
+
+/* Marquee container */
+.marquee-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* About Us section background */
 .about-hero {
   background: linear-gradient(135deg, rgba(107,91,250,.1), rgba(240,78,154,.1));
 }
+
+/* Services section background */
+#services {
+  background: linear-gradient(135deg, rgba(107,91,250,0.12), rgba(240,78,154,0.12));
+}
+
+/* Generic Info Card (Used in Mission/Vision and Core Values) */
 .info-card {
   background: var(--secondary-bg); border-radius: .75rem; 
   box-shadow: 0 4px 12px rgba(0,0,0,.05); padding: 2rem; 
@@ -140,6 +105,8 @@ html, body {
   transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,.08);
   border: 1px solid rgba(255,255,255,0.2);
 }
+
+/* Team Card */
 .team-card {
   background: rgba(255,255,255,0.6); backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.4);
@@ -156,62 +123,137 @@ html, body {
   box-shadow: 0 6px 20px rgba(0,0,0,.2);
 }
 
-/* Contact Form & Mobile Optimization */
-.contact-form-actions {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 1rem;
-}
-#contact {
-  background: var(--secondary-bg); transition: var(--transition);
-}
-#contact input, #contact textarea {
-  background: var(--primary-bg); color: var(--primary-text);
-  border: 1px solid var(--primary-text); transition: var(--transition);
-}
-
 /*
 ================================
-Responsive Navigation (Corrected Fix)
+Styles Moved from Inline HTML
 ================================
 */
 
-/* --- Default styles for DESKTOP --- */
-/* The hamburger is hidden on desktop */
-.hamburger {
-  display: none;
+/* Styles for the discount card in the hero section */
+.discount-card {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg);
+  border: 1px solid var(--accent);
+  padding: 20px;
+  border-radius: 8px;
+  color: var(--accent);
+  line-height: 1.7;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.discount-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.discount-subtitle {
+  font-size: 0.8rem;
+}
+
+/* Styles for the service card status text */
+.service-status-active {
+  color: green;
+  font-size: 0.75rem; /* 12px */
+}
+.service-status-dev {
+  color: grey;
+  font-size: 0.75rem; /* 12px */
+}
+
+/* Styles for the "Explore The Project" button in work cards */
+.work-card-btn {
+  background-color: #6b5bfa;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+.work-card-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Styles for the WhatsApp button in the contact form */
+.whatsapp-btn {
+  align-items: center;
+  margin-left: auto; /* Use auto margins for centering */
+  margin-right: auto;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  display: inline-flex;
+  gap: 12px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.whatsapp-btn:hover {
+  background-color: #1ebe5b;
+  transform: translateY(-2px);
+}
+.whatsapp-btn img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
 }
 
-/* The mobile menu dropdown is hidden on desktop */
-#mobile-menu {
-  display: none;
+/* Styles for the floating WhatsApp widget */
+.whatsapp-widget {
+  position: fixed;
+  bottom: -80px;
+  left: 20px;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+.whatsapp-widget-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25D366;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  font-size: 14px;
+}
+.whatsapp-widget-icon {
+  width: 24px;
+  height: 24px;
 }
 
+/* Styles for the footer */
+.footer-section {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+}
+.footer-copyright {
+    color: var(--footer-text);
+}
 
-/* --- Styles for MOBILE (screens 768px wide or smaller) --- */
-@media (max-width: 768px) {
+/* Styles for the contact form actions on mobile */
+.contact-form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Adds space between the buttons */
+}
 
-  /* 1. Hide the desktop navigation links. 
-     The '!important' tag ensures this rule overrides Tailwind's 'flex' class. */
-  .nav-links {
-    display: none !important;
-  }
-
-  /* 2. Show the hamburger menu icon on mobile */
-  .hamburger {
-    display: block;
-  }
-
-  /* 3. Style the mobile menu dropdown */
-  #mobile-menu {
-    width: 100%;
-    background-color: var(--secondary-bg);
-    border-top: 1px solid var(--accent);
-    /* It remains hidden by default (display: none) until the 'show' class is added */
-  }
-
-  /* 4. This style is applied by JavaScript to show the menu */
-  #mobile-menu.show {
-    display: block;
-  }
+/* Social Media Icons */
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+.fa:hover {
+   opacity: 0.7;
 }
