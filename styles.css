@@ -370,3 +370,37 @@ body {
     align-items: center;
     gap: 1rem; /* Adds space between the buttons */
 }
+
+/*
+================================
+Responsive Navigation (Mobile)
+================================
+*/
+
+/* This is the breakpoint. On screens 768px wide or smaller... */
+@media (max-width: 768px) {
+
+  /* 1. Hide the desktop navigation links */
+  .nav-links {
+    display: none;
+  }
+
+  /* 2. Show the hamburger menu icon */
+  .hamburger {
+    display: inline-block; /* Or 'block' or 'flex' depending on alignment */
+    cursor: pointer;
+  }
+
+  /* 3. Style the mobile menu so it's hidden by default */
+  #mobile-menu {
+    display: none; /* Hidden until the .show class is added by JavaScript */
+    width: 100%;
+    background-color: var(--secondary-bg); /* Use your theme's background */
+    border-top: 1px solid var(--accent);
+  }
+
+  /* 4. This style is applied when JavaScript adds the 'show' class */
+  #mobile-menu.show {
+    display: block;
+  }
+}
