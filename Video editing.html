@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ace4Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Light & Airy) -->
+    <!-- Application Structure Plan: The SPA is structured as a narrative journey for the user, starting with a captivating introduction, flowing into the core offering (the interactive packages), and concluding with a clear call-to-action. This single-page, top-to-bottom flow is intuitive and guides the user logically from awareness to consideration and finally to inquiry, mirroring a sales funnel. The core interaction is focused on the package cards, using a cinematic hover effect to reveal details, which directly translates the report's emphasis on creating an impressive, emotional connection and encouraging exploration without overwhelming the user initially. All service details are now consolidated within the cards to simplify the information architecture. -->
+    <!-- Visualization & Content Choices: The primary information is the tiered package structure, adapted for an Indian audience with a promotional offer. Goal: Compare, Inform & Attract. Method: Interactive Product Cards with a prominent "50% OFF" sticker. The card design uses a hover effect where the background image subtly zooms, an overlay darkens, and key features fade in. This interaction reveals more detailed service offerings on demand. Justification: The sticker immediately draws the eye, creating urgency. The updated price display (new vs. old) clearly communicates the value of the offer. This approach makes exploring the feature-rich packages an engaging experience. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .card-spotlight {
+            background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 80%);
+        }
+        .nav-links { @apply hidden md:flex; }
+        .hamburger { @apply md:hidden; }
+        #mobile-menu { @apply hidden; }
+        #mobile-menu.active { @apply block; }
+        .theme-icon { @apply w-5 h-5 transition-transform duration-300; }
+
+        .title-container {
+            position: relative;
+            padding: 1rem 0;
+        }
+        .title-container::before,
+        .title-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background-color: #c084fc; /* purple-400 */
+            transition: background-color 0.5s ease;
+        }
+        .title-container::before { top: 0; }
+        .title-container::after { bottom: 0; }
+
+        .dark .title-container::before,
+        .dark .title-container::after {
+            background-color: #a78bfa; /* purple-400, a bit lighter for dark mode */
+        }
+
+
+  }
+
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+<body class="bg-stone-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+    <header class="sticky top-0 z-50 bg-stone-50/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm transition-colors duration-500">
+        <!-- NAVBAR -->
+        <nav class="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 cursor-pointer">
+                 <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="text-amber-600">
+                    <circle cx="12" cy="12" r="11"/>
+                    <path d="M8 16v-8h8"/>
+                    <path d="M12 20v-16"/>
+                </svg>
+                <span class="font-bold text-xl text-gray-900 dark:text-white">ace4Labs</span>
+            </div>
+            <div class="nav-links flex gap-8 font-medium text-gray-700 dark:text-gray-300">
+                <a href="#home"    class="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Home</a>
+                <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Main Site</a>
+                <a href="#about"   class="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">About Us</a>
+                <a href="#contact" class="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-stone-50 dark:focus:ring-offset-gray-900">
+                     <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                     <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="theme-icon absolute" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <div id="hamburger-button" class="hamburger space-y-1.5 cursor-pointer">
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home" class="w-full">
+        <section id="services" class="pt-20 pb-20 sm:pt-28 sm:pb-28 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 title-container">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                        Our Wedding Film Collections
+                    </h1>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400">
+                        Aapki shaadi sirf ek din ka jashn nahi, yeh aapke pyaar ki dastaan hai. Hum har pal ko khoobsurti se kaid karte hain, ek aisi film banate hain jo aapki virasat banegi.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="Developerm.png" alt="Joyful couple during an Indian wedding ceremony">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/80 group-hover/card:via-black/50"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Rivaaz Collection</h3>
+                            <p class="mt-2 text-base text-stone-300">Aapke khaas din ki zaroori rasmon ko khoobsurti se pesh karte hue.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-stone-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>4-6 Minute Cinematic Highlight Film</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>1 Day (8 Hours) Coverage</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>1 Professional Videographer</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Traditional Ceremony Edit (30 mins)</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>4K Ultra HD Delivery</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold">₹95,000</span>
+                                    <span class="text-lg line-through text-stone-400">₹1,90,000</span>
+                                </div>
+                                <button class="bg-white/90 text-black font-bold py-1.5 px-4 rounded-full text-sm shadow-md transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem] border-2 border-amber-400">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <div class="absolute top-0 right-0 bg-amber-400 text-black text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl z-10">Most Popular</div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="Developerm.png" alt="Indian couple in a cinematic pose during their wedding photoshoot">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/80 group-hover/card:via-black/50"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Utsav Collection</h3>
+                            <p class="mt-2 text-base text-stone-300">Aapke poore jashn ki shaan ko dikhane wali ek filmi kahani.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-stone-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>6-8 Minute Cinematic Feature Film</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>2 Days (16 Hours) with 2 Videographers</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Sangeet / Mehndi Highlights Film</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>1-Minute Instagram Teaser</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Full Multi-Cam Ceremony & Speeches</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                 <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold text-amber-400">₹1,50,000</span>
+                                    <span class="text-lg line-through text-stone-400">₹3,00,000</span>
+                                </div>
+                                <button class="bg-amber-400 text-black font-bold py-1.5 px-4 rounded-full text-sm shadow-md transition-all duration-300 hover:bg-amber hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white"> Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                         <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="Developerm.png" alt="Elegant details of an Indian wedding celebration">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/80 group-hover/card:via-black/50"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Viraasat Collection</h3>
+                            <p class="mt-2 text-base text-stone-300">Ek shaahi anubhav, jo aapki kahani ko sadiyon tak zinda rakhega.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-stone-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>10-15 Minute Signature Film</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Pre-Wedding Concept Film</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>3 Days (24 Hours) Coverage</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Cinematic Drone Shots Included</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Full Documentary Film (60-90 min)</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold">₹2,75,000</span>
+                                    <span class="text-lg line-through text-stone-400">₹5,50,000</span>
+                                </div>
+                                <button class="bg-white/90 text-black font-bold py-1.5 px-4 rounded-full text-sm shadow-md transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center">
+                    <button id="contact" class="bg-gray-900 dark:bg-amber-600 text-white dark:text-black font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-gray-700 dark:hover:bg-amber-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-100 dark:focus:ring-offset-gray-900 focus:ring-gray-900">
+                        Check Our Availability
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-500">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">About ace4Labs</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                    Based in the heart of Patna, we are a team of passionate storytellers who believe every wedding is a unique epic. We travel all over India to capture the laughter, tears, and timeless moments of your big day, crafting cinematic heirlooms you'll cherish forever.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center text-gray-400 text-sm">
+            <p>&copy; 2025 ace4Labs. All Rights Reserved.</p>
+            <p class="mt-2">Patna mein sthit, poore Bharat mein aapki khushiyon ko kaid karte hain.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar functionality
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+
+        const updateThemeIcons = (isDarkMode) => {
+            if (isDarkMode) {
+                sunIcon.style.transform = 'scale(0)';
+                moonIcon.style.transform = 'scale(1) rotate(0deg)';
+            } else {
+                sunIcon.style.transform = 'scale(1) rotate(0deg)';
+                moonIcon.style.transform = 'scale(0) rotate(90deg)';
+            }
+        };
+
+        // Initialize theme on page load
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        const isDarkMode = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+        if (isDarkMode) {
+            htmlEl.classList.add('dark');
+        }
+        updateThemeIcons(isDarkMode);
+
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlEl.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        });
+
+        // Card spotlight effect
+        document.querySelectorAll('.group\\/card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+
+</body>
+</html>

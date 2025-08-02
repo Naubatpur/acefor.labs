@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ace4Labs - Logo Design Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Indigo & Magenta -->
+    <!-- Application Structure Plan: The SPA is designed as a focused service page for a logo design agency. The flow is direct: introduce the value of a great logo, present clear, tiered packages, and funnel users towards an easy contact method. This structure is built to convert visitors who have a specific need (logo design) into qualified leads. -->
+    <!-- Visualization & Content Choices: The primary content is the three-tiered logo design packages. Goal: Clarify offerings, showcase value, and encourage inquiry. Method: Interactive Cards for "Startup Spark," "Brand Builder," and "Identity System." Interaction: Hovering on a card reveals key deliverables. Clicking a card's button now dynamically generates a pre-filled WhatsApp message with the package details. Justification: This new interaction streamlines the inquiry process, providing immediate, detailed context to the business owner and making it effortless for the client to start a conversation. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .card-spotlight {
+            background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.1), transparent 80%);
+        }
+        .nav-links { @apply hidden md:flex; }
+        .hamburger { @apply md:hidden; }
+        #mobile-menu { @apply hidden; }
+        #mobile-menu.active { @apply block; }
+        .theme-icon { @apply w-5 h-5 transition-transform duration-300; }
+
+        .title-container {
+            position: relative;
+            padding: 1rem 0;
+        }
+        .title-container::before,
+        .title-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background-color: #c026d3; /* fuchsia-600 */
+            transition: background-color 0.5s ease;
+        }
+        .title-container::before { top: 0; }
+        .title-container::after { bottom: 0; }
+
+        .dark .title-container::before,
+        .dark .title-container::after {
+            background-color: #d946ef; /* fuchsia-500 */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+    <header class="sticky top-0 z-40 bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm transition-colors duration-500">
+        <!-- NAVBAR -->
+        <nav class="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 cursor-pointer">
+                 <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-600 dark:text-indigo-500">
+                    <circle cx="12" cy="12" r="11"/>
+                    <path d="M8 16v-8h8"/>
+                    <path d="M12 20v-16"/>
+                </svg>
+                <span class="font-bold text-xl text-gray-900 dark:text-white">ace4Labs</span>
+            </div>
+            <div class="nav-links flex gap-8 font-medium text-gray-700 dark:text-gray-300">
+                <a href="#home"    class="hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition-colors">Home</a>
+                <a href="index.html" class="hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition-colors">Main Site</a>
+                <a href="#about"   class="hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition-colors">About Us</a>
+                <a href="#contact" class="hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-900">
+                     <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                     <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="theme-icon absolute" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <div id="hamburger-button" class="hamburger space-y-1.5 cursor-pointer md:hidden">
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="px-6 pb-4 max-w-7xl mx-auto md:hidden text-gray-700 dark:text-gray-300">
+            <a href="#home"    class="block py-2 font-medium hover:text-fuchsia-600 dark:hover:text-fuchsia-500">Home</a>
+            <a href="index.html" class="block py-2 font-medium hover:text-fuchsia-600 dark:hover:text-fuchsia-500">Main Site</a>
+            <a href="#about"   class="block py-2 font-medium hover:text-fuchsia-600 dark:hover:text-fuchsia-500">About Us</a>
+            <a href="#contact" class="block py-2 font-medium hover:text-fuchsia-600 dark:hover:text-fuchsia-500">Contact</a>
+        </div>
+    </header>
+
+    <main id="home" class="w-full">
+        <section id="services" class="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 title-container">
+                    <h1 class="text-4xl sm:text-5xl xl:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                       A Logo is Your Signature. We Craft Legends.
+                    </h1>
+                    <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400">
+                        Beyond just a mark, a great logo tells your story. We design iconic identities that build trust, recognition, and a lasting legacy for your brand.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="A designer sketching logo concepts in a notebook">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col p-6 text-white">
+                            <div class="mt-auto">
+                                <h3 class="text-3xl font-bold font-serif">Startup Spark</h3>
+                                <p class="mt-2 text-base text-gray-300">The essential identity for new ventures ready to make their mark.</p>
+                            </div>
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-gray-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>2 Initial Logo Concepts</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>High-Resolution Vector Files (AI, EPS)</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Web & Print Ready Files (PNG, JPG)</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>3 Rounds of Revisions</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Full Ownership Rights</span></li>
+                                </ul>
+                            </div>
+                            <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold">₹299</span>
+                                    <span class="text-lg line-through text-gray-400">₹598</span>
+                                </div>
+                                <button class="service-button w-full sm:w-auto bg-white/90 text-black font-bold py-2 px-4 rounded-full transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem] border-2 border-fuchsia-500">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <div class="absolute top-0 right-0 bg-fuchsia-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl z-10">Most Popular</div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="Multiple variations of a logo design shown on a computer screen">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col p-6 text-white">
+                            <div class="mt-auto">
+                                <h3 class="text-3xl font-bold font-serif">Brand Builder</h3>
+                                <p class="mt-2 text-base text-gray-300">A comprehensive package for businesses serious about their identity.</p>
+                            </div>
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-gray-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>4 Initial Logo Concepts</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Social Media Profile Pictures & Banners</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Business Card Design</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Color Palette & Font System</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Unlimited Revisions</span></li>
+                                </ul>
+                            </div>
+                            <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                 <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold text-fuchsia-400">₹499</span>
+                                    <span class="text-lg line-through text-gray-400">₹998</span>
+                                </div>
+                                <button class="service-button w-full sm:w-auto bg-fuchsia-500 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 hover:bg-fuchsia-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-fuchsia-500">
+                                    Choose Plan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                         <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="A complete brand identity style guide laid out on a table">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col p-6 text-white">
+                           <div class="mt-auto">
+                                <h3 class="text-3xl font-bold font-serif">Identity System</h3>
+                                <p class="mt-2 text-base text-gray-300">The complete brand bible for establishing an iconic and consistent presence.</p>
+                            </div>
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-gray-200">
+                                     <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Everything in Brand Builder, plus:</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Comprehensive Brand Style Guide</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Full Stationary Suite Design</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Logo Usage Guidelines</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Dedicated Senior Designer</span></li>
+                                </ul>
+                            </div>
+                            <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold">₹599</span>
+                                    <span class="text-lg line-through text-gray-400">₹1,198</span>
+                                </div>
+                                <button class="service-button w-full sm:w-auto bg-white/90 text-black font-bold py-2 px-4 rounded-full transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Enquire Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center">
+                    <a href="https://wa.me/+918789673274?text=Hello! I'm interested in starting a Design Brief for a new logo from ace4Labs."
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       id="contact"
+                       class="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-indigo-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-900 focus:ring-indigo-600">
+                        Start Your Design Brief
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="py-16 sm:py-20 bg-white dark:bg-gray-800 transition-colors duration-500">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">About ace4Labs</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                    Operating from our studio in Patna, ace4Labs is a collective of brand strategists and designers passionate about visual identity. We believe a logo is the soul of a brand, and we pour our creativity into crafting powerful, lasting symbols for clients all across India.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center text-gray-400 text-sm">
+            <p>&copy; 2025 ace4Labs. All Rights Reserved.</p>
+            <p class="mt-2">Crafting the Face of Your Brand's Future.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar functionality
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        const updateThemeIcons = (isDarkMode) => {
+            if (isDarkMode) {
+                sunIcon.style.transform = 'scale(0)';
+                moonIcon.style.transform = 'scale(1) rotate(0deg)';
+            } else {
+                sunIcon.style.transform = 'scale(1) rotate(0deg)';
+                moonIcon.style.transform = 'scale(0) rotate(90deg)';
+            }
+        };
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        const isDarkMode = savedTheme ? savedTheme === 'dark' : prefersDark;
+        if (isDarkMode) {
+            htmlEl.classList.add('dark');
+        }
+        updateThemeIcons(isDarkMode);
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlEl.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        });
+
+        // Card spotlight effect
+        document.querySelectorAll('.group\\/card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Interactive card button logic
+        document.querySelectorAll('.service-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const card = button.closest('.group\\/card');
+                const planName = card.querySelector('h3').innerText;
+                const price = card.querySelector('.flex.items-baseline.gap-2 > span:first-child').innerText;
+
+                let features = 'Features:\n';
+                card.querySelectorAll('ul > li').forEach(li => {
+                    // Replace the checkmark icon text and trim whitespace
+                    const featureText = li.innerText.replace('✓', '').trim();
+                    features += `- ${featureText}\n`;
+                });
+
+                const message = `Hello ace4Labs!\n\nI'm interested in your logo design services and would like to know more about the following package:\n\n*Package:* ${planName}\n*Price:* ${price}\n\n${features}`;
+
+                const whatsappURL = `https://wa.me/+918789673274?text=${encodeURIComponent(message)}`;
+
+                // Open WhatsApp link in a new tab
+                window.open(whatsappURL, '_blank');
+            });
+        });
+
+    </script>
+
+</body>
+</html>

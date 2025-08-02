@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ace4Labs - Web Design, E-commerce & SEO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Light Purple & Neutrals -->
+    <!-- Application Structure Plan: The SPA is structured to function as a digital storefront for a web design agency. It guides potential clients from a powerful value proposition (the headline) to a clear, comparable set of services (the interactive cards), and finally to a direct call-to-action. This structure is designed to maximize lead conversion by simplifying the decision-making process for clients. -->
+    <!-- Visualization & Content Choices: The core information is the tiered service packages. Goal: Compare, Inform & Convert. Method: Interactive Product Cards showcasing different web design plans ("LaunchPad", "Growth Engine", "ScaleUp") with a "50% OFF" offer. Interaction: The hover effect reveals key features and benefits, and clicking a button now generates a pre-filled WhatsApp inquiry. Justification: This approach clearly segments the service offerings, while the prominent discount and dynamic buttons create a frictionless path from interest to direct contact. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .card-spotlight {
+            background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.1), transparent 80%);
+        }
+        .nav-links { @apply hidden md:flex; }
+        .hamburger { @apply md:hidden; }
+        #mobile-menu { @apply hidden; }
+        #mobile-menu.active { @apply block; }
+        .theme-icon { @apply w-5 h-5 transition-transform duration-300; }
+
+        .title-container {
+            position: relative;
+            padding: 1rem 0;
+        }
+        .title-container::before,
+        .title-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background-color: #c084fc; /* purple-400 */
+            transition: background-color 0.5s ease;
+        }
+        .title-container::before { top: 0; }
+        .title-container::after { bottom: 0; }
+
+        .dark .title-container::before,
+        .dark .title-container::after {
+            background-color: #a78bfa; /* purple-400, a bit lighter for dark mode */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+<body class="bg-stone-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+    <header class="sticky top-0 z-50 bg-stone-50/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm transition-colors duration-500">
+        <!-- NAVBAR -->
+        <nav class="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 cursor-pointer">
+                 <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="text-purple-600">
+                    <circle cx="12" cy="12" r="11"/>
+                    <path d="M8 16v-8h8"/>
+                    <path d="M12 20v-16"/>
+                </svg>
+                <span class="font-bold text-xl text-gray-900 dark:text-white">ace4Labs</span>
+            </div>
+            <div class="nav-links flex gap-8 font-medium text-gray-700 dark:text-gray-300">
+                <a href="#home"    class="hover:text-purple-600 dark:hover:text-purple-500 transition-colors">Home</a>
+                <a href="index.html" class="hover:text-purple-600 dark:hover:text-purple-500 transition-colors">Main Site</a>
+                <a href="#about"   class="hover:text-purple-600 dark:hover:text-purple-500 transition-colors">About Us</a>
+                <a href="#contact" class="hover:text-purple-600 dark:hover:text-purple-500 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-stone-50 dark:focus:ring-offset-gray-900">
+                     <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                     <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="theme-icon absolute" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <div id="hamburger-button" class="hamburger space-y-1.5 cursor-pointer md:hidden">
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="px-6 pb-4 md:hidden">
+            <a href="#home" class="block py-2">Home</a>
+            <a href="#services" class="block py-2">Services</a>
+            <a href="#about" class="block py-2">About Us</a>
+            <a href="#contact" class="block py-2">Contact</a>
+        </div>
+    </header>
+
+    <main id="home" class="w-full">
+        <section id="services" class="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 title-container">
+                    <h1 class="text-4xl sm:text-5xl xl:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                        Websites That Drive Growth
+                    </h1>
+                    <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400">
+                        We build pixel-perfect, SEO-optimized websites that captivate your audience and convert visitors into customers. Let's build your digital masterpiece.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80" alt="Hands interacting with a screen showing website UI/UX designs">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/80 group-hover/card:via-black/50"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">LaunchPad</h3>
+                            <p class="mt-2 text-base text-stone-300">Perfect for startups and small businesses needing a professional online presence.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-stone-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Fully-Customized Design</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Mobile-First Responsive Design</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Basic SEO Setup</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Contact Form & Social Links</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>1 Month Free Support</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold">₹25,000</span>
+                                    <span class="text-lg line-through text-stone-400">₹50,000</span>
+                                </div>
+                                <button class="service-button w-full sm:w-auto bg-white/90 text-black font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem] border-2 border-purple-400">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <div class="absolute top-0 right-0 bg-purple-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl z-10">Most Popular</div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=800&q=80" alt="Person working on a laptop with a coffee, showing an e-commerce website">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/80 group-hover/card:via-black/50"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Growth Engine</h3>
+                            <p class="mt-2 text-base text-stone-300">Ideal for growing businesses looking to sell online and boost their visibility.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-stone-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Everything in LaunchPad, plus:</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>E-commerce (up to 50 products)</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Advanced SEO & Analytics</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Blog & Content Management System</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Payment Gateway Integration</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                 <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold text-purple-400">₹60,000</span>
+                                    <span class="text-lg line-through text-stone-400">₹1,20,000</span>
+                                </div>
+                                <button class="service-button w-full sm:w-auto bg-purple-500 text-white font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-purple-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-purple-500">
+                                    Choose Plan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                         <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Abstract data visualization with network connections">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/80 group-hover/card:via-black/50"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">ScaleUp</h3>
+                            <p class="mt-2 text-base text-stone-300">The ultimate solution for enterprises requiring custom features and scalability.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-stone-200">
+                                     <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Everything in Growth Engine, plus:</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Custom Web Application Development</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Dedicated Monthly SEO Strategy</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Advanced API Integrations</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Priority Support & Maintenance</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold">₹1,25,000</span>
+                                    <span class="text-lg line-through text-stone-400">₹2,50,000</span>
+                                </div>
+                                <button class="service-button w-full sm:w-auto bg-white/90 text-black font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Enquire Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center">
+                    <a href="https://wa.me/+918789673274?text=Hello! I'm interested in getting a free quote for a new website from ace4Labs."
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       id="contact"
+                       class="inline-block bg-gray-900 dark:bg-purple-600 text-white dark:text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-gray-700 dark:hover:bg-purple-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-100 dark:focus:ring-offset-gray-900 focus:ring-gray-900">
+                        Get a Free Quote
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="py-16 sm:py-20 bg-white dark:bg-gray-800 transition-colors duration-500">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">About ace4Labs</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                    Based in the heart of Patna, ace4Labs is a passionate team of designers and developers dedicated to helping businesses thrive online. We combine stunning design with powerful SEO strategies to build websites that not only look amazing but also deliver tangible results.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center text-gray-400 text-sm">
+            <p>&copy; 2025 ace4Labs. All Rights Reserved.</p>
+            <p class="mt-2">Building Digital Success Stories from Patna to the World.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar functionality
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        const updateThemeIcons = (isDarkMode) => {
+            if (isDarkMode) {
+                sunIcon.style.transform = 'scale(0)';
+                moonIcon.style.transform = 'scale(1) rotate(0deg)';
+            } else {
+                sunIcon.style.transform = 'scale(1) rotate(0deg)';
+                moonIcon.style.transform = 'scale(0) rotate(90deg)';
+            }
+        };
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        const isDarkMode = savedTheme ? savedTheme === 'dark' : prefersDark;
+        if (isDarkMode) {
+            htmlEl.classList.add('dark');
+        }
+        updateThemeIcons(isDarkMode);
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlEl.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        });
+
+        // Card spotlight effect
+        document.querySelectorAll('.group\\/card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Interactive card button logic
+        document.querySelectorAll('.service-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const card = button.closest('.group\\/card');
+                const planName = card.querySelector('h3').innerText;
+                const price = card.querySelector('.flex.items-baseline.gap-2 > span:first-child').innerText;
+
+                let features = 'Features:\n';
+                card.querySelectorAll('ul > li').forEach(li => {
+                    const featureText = li.innerText.replace('✓', '').trim();
+                    features += `- ${featureText}\n`;
+                });
+
+                const message = `Hello ace4Labs!\n\nI'm interested in your website services and would like to know more about the following package:\n\n*Package:* ${planName}\n*Price:* ${price}\n\n${features}`;
+
+                const whatsappURL = `https://wa.me/+918789673274?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappURL, '_blank');
+            });
+        });
+    </script>
+
+</body>
+</html>

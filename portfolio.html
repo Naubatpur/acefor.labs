@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ace4Labs - Portfolio Website Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Teal & Slate -->
+    <!-- Application Structure Plan: The SPA is redesigned as a boutique agency page for portfolio design. The structure guides a user (a creative professional) from an inspirational headline about making an impact, through to clearly defined packages that cater to different career stages, and ends with a direct contact point. This funnel is optimized for clarity and conversion for this specific niche. -->
+    <!-- Visualization & Content Choices: The core information is the tiered portfolio packages. Goal: Compare, Inspire & Convert. Method: Interactive Cards for "Creator," "Professional," and "Executive" plans. The 50% offer remains a strong lead magnet. Interaction: The cinematic hover effect reveals features tailored to portfolio needs like project galleries, case study pages, and custom branding. Justification: This structure speaks directly to the target audience, making it easy to self-select the right package, while the design aesthetic builds trust in the agency's ability to deliver a high-quality visual product. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .card-spotlight {
+            background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.1), transparent 80%);
+        }
+        .nav-links { @apply hidden md:flex; }
+        .hamburger { @apply md:hidden; }
+        #mobile-menu { @apply hidden; }
+        #mobile-menu.active { @apply block; }
+        .theme-icon { @apply w-5 h-5 transition-transform duration-300; }
+
+        .title-container {
+            position: relative;
+            padding: 1rem 0;
+        }
+        .title-container::before,
+        .title-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background-color: #14b8a6; /* teal-500 */
+            transition: background-color 0.5s ease;
+        }
+        .title-container::before { top: 0; }
+        .title-container::after { bottom: 0; }
+
+        .dark .title-container::before,
+        .dark .title-container::after {
+            background-color: #2dd4bf; /* teal-400 */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-500">
+    <header class="sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-sm transition-colors duration-500">
+        <!-- NAVBAR -->
+        <nav class="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 cursor-pointer">
+                 <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="text-teal-600 dark:text-teal-500">
+                    <circle cx="12" cy="12" r="11"/>
+                    <path d="M8 16v-8h8"/>
+                    <path d="M12 20v-16"/>
+                </svg>
+                <span class="font-bold text-xl text-slate-900 dark:text-white">ace4Labs</span>
+            </div>
+            <div class="nav-links flex gap-8 font-medium text-slate-700 dark:text-slate-300">
+                <a href="#home"    class="hover:text-teal-600 dark:hover:text-teal-500 transition-colors">Home</a>
+                <a href="index.html" class="hover:text-teal-600 dark:hover:text-teal-500 transition-colors">Main Site</a>
+                <a href="#about"   class="hover:text-teal-600 dark:hover:text-teal-500 transition-colors">About Us</a>
+                <a href="#contact" class="hover:text-teal-600 dark:hover:text-teal-500 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900">
+                     <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                     <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="theme-icon absolute" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <div id="hamburger-button" class="hamburger space-y-1.5 cursor-pointer md:hidden">
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <main id="home" class="w-full">
+        <section id="services" class="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 title-container">
+                    <h1 class="text-4xl sm:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white leading-tight">
+                       Crafting Digital Portfolios That Get You Noticed
+                    </h1>
+                    <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400">
+                        We design stunning, personal websites that showcase your work, tell your story, and open doors to new opportunities.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1521185496955-15097b20c5fe?auto=format&fit=crop&w=800&q=80" alt="A designer sketching on a tablet with a stylus">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Creator</h3>
+                            <p class="mt-2 text-base text-slate-300">For students, artists, and creatives ready to make their mark online.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-slate-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Stunning Single-Page Portfolio</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Interactive Project Galleries</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Mobile Responsive Design</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Contact Form & Social Links</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Basic SEO Setup</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold">₹15,000</span>
+                                    <span class="text-lg line-through text-slate-400">₹30,000</span>
+                                </div>
+                                <button class="bg-white/90 text-black font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Start Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem] border-2 border-teal-400">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <div class="absolute top-0 right-0 bg-teal-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl z-10">Most Popular</div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80" alt="A beautifully designed minimalist portfolio website on a laptop screen">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Professional</h3>
+                            <p class="mt-2 text-base text-slate-300">For established freelancers and professionals aiming to elevate their brand.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-slate-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Everything in Creator, plus:</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Multi-Page Site (About, Blog etc.)</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Custom Domain & Hosting Setup</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Advanced Animations & Transitions</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Testimonials Section</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                 <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold text-teal-400">₹35,000</span>
+                                    <span class="text-lg line-through text-slate-400">₹70,000</span>
+                                </div>
+                                <button class="bg-teal-500 text-white font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-teal-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-teal-500">
+                                    Choose Plan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                         <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="An abstract, premium image representing bespoke branding and design">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">Executive</h3>
+                            <p class="mt-2 text-base text-slate-300">A bespoke, white-glove service for industry leaders and visionaries.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-slate-200">
+                                     <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Everything in Professional, plus:</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Personal Branding Consultation</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Video Integration & Case Studies</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Copywriting & Content Strategy</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Priority Support & Consultation</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold">₹75,000</span>
+                                    <span class="text-lg line-through text-slate-400">₹1,50,000</span>
+                                </div>
+                                <button class="bg-white/90 text-black font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-white">
+                                    Enquire Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group/card relative rounded-xl overflow-hidden shadow-lg dark:shadow-black/20 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-[36rem]">
+                        <div class="absolute top-0 left-0 w-32 h-32 overflow-hidden z-10">
+                            <div class="absolute top-8 -left-8 w-full transform -rotate-45 bg-red-600 text-center text-white font-semibold py-1">50% OFF</div>
+                        </div>
+                        <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl z-10">Most Affordable</div>
+                        <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/card:scale-105" src="https://images.unsplash.com/photo-1505238680356-667803448bb6?auto=format&fit=crop&w=800&q=80" alt="A minimalist desk setup with a laptop showing a clean website">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover/card:from-black/90 group-hover/card:via-black/60"></div>
+                        <div class="card-spotlight absolute inset-0 pointer-events-none"></div>
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <h3 class="text-3xl font-bold font-serif">QuickFolio</h3>
+                            <p class="mt-2 text-base text-slate-300">The fastest way to get a clean, single-page portfolio online.</p>
+
+                            <div class="mt-6 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 h-0 group-hover/card:h-auto overflow-hidden">
+                                <ul class="space-y-2 text-sm text-slate-200">
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Essential 1-Page Layout</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>About, Work & Contact Sections</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Clean & Simple Design</span></li>
+                                    <li class="flex items-start"><span class="mr-2 mt-1">✓</span> <span>Super Fast Delivery</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex justify-between items-center">
+                                 <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-bold text-blue-400">₹799</span>
+                                    <span class="text-lg line-through text-slate-400">₹1,599</span>
+                                </div>
+                                <button class="bg-blue-500 text-white font-bold py-2 px-5 rounded-full transition-all duration-300 hover:bg-blue-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-blue-500">
+                                    Get It Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-20 text-center">
+                    <button id="contact" class="bg-slate-900 dark:bg-teal-600 text-white dark:text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-slate-700 dark:hover:bg-teal-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900 focus:ring-slate-900">
+                        Get a Free Consultation
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="py-16 sm:py-20 bg-white dark:bg-slate-800 transition-colors duration-500">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">About ace4Labs</h2>
+                <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">
+                    At ace4Labs, we believe your work deserves a spotlight. From our studio in Patna, we specialize in creating bespoke digital portfolios for creatives, professionals, and leaders across the globe. Our mission is to translate your talent and story into an unforgettable online experience.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center text-slate-400 text-sm">
+            <p>&copy; 2025 ace4Labs. All Rights Reserved.</p>
+            <p class="mt-2">Crafting Your Digital First Impression.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar functionality
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+
+        const updateThemeIcons = (isDarkMode) => {
+            if (isDarkMode) {
+                sunIcon.style.transform = 'scale(0)';
+                moonIcon.style.transform = 'scale(1) rotate(0deg)';
+            } else {
+                sunIcon.style.transform = 'scale(1) rotate(0deg)';
+                moonIcon.style.transform = 'scale(0) rotate(90deg)';
+            }
+        };
+
+        // Initialize theme on page load
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        const isDarkMode = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+        if (isDarkMode) {
+            htmlEl.classList.add('dark');
+        }
+        updateThemeIcons(isDarkMode);
+
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlEl.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        });
+
+        // Card spotlight effect
+        document.querySelectorAll('.group\\/card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Acefor.Labs - Website & Brand Design Services" />
+  <title>Website & Brand Designer – Acefor.Labs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Your local stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="flex items-center justify-between px-6 py-4 max-w-5xl mx-auto">
+    <div class="flex items-center gap-2 cursor-pointer">
+      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="11"/>
+        <path d="M8 16v-8h8"/>
+        <path d="M12 20v-16"/>
+      </svg>
+      <span class="font-bold text-xl">acefor.labs</span>
+    </div>
+    <div class="nav-links flex gap-6 font-medium">
+      <a href="#home" class="hover:text-indigo-600">Home</a>
+      <a href="#services" class="hover:text-indigo-600">Services</a>
+      <a href="#work" class="hover:text-indigo-600">Our Work</a>
+      <a href="#about" class="hover:text-indigo-600">About Us</a>
+      <a href="#contact" class="hover:text-indigo-600">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="btn btn-secondary text-sm">Dark Mode</button>
+      <div class="hamburger space-y-1">
+        <span class="block w-6 h-0.5 bg-current"></span>
+        <span class="block w-6 h-0.5 bg-current"></span>
+        <span class="block w-6 h-0.5 bg-current"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="px-6 pb-4 max-w-5xl mx-auto">
+    <a href="#home" class="block py-2">Home</a>
+    <a href="#services" class="block py-2">Services</a>
+    <a href="#work" class="block py-2">Our Work</a>
+    <a href="#about" class="block py-2">About Us</a>
+    <a href="#contact" class="block py-2">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <main id="home" class="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto p-6">
+    <div class="max-w-md">
+      <h1 class="hero-heading text-4xl font-bold mb-4">
+        The Website <span class="text-indigo-600">&amp;</span><br/>
+        Brand Designer
+      </h1>
+      <!-- The onmouseover/onmouseout events have been moved to script.js -->
+      <div id="discount-card" class="discount-card">
+        <p class="discount-title"> You Can avail a 20% Discount on all our services By becoming a member of our Lab. </p>
+        <p class="discount-subtitle">
+          *That means you can get a stunning website for just <strong>₹799</strong>, a professional logo for <strong>₹399</strong>, and more!<br>
+        </p>
+      </div>
+      <br>
+      <div class="flex gap-4">
+        <a href="website.html">
+          <button class="btn btn-primary">Create Free Website</button>
+        </a>
+        <a href="#services">
+          <button class="btn btn-secondary">View Services</button>
+        </a>
+      </div>
+    </div>
+    <div class="relative mt-8 lg:mt-0 w-full max-w-lg">
+      <div class="absolute -top-10 -left-10 w-[380px] h-[340px] bg-gradient-to-br from-indigo-600 to-pink-500 blur-3xl opacity-50 rounded-3xl"></div>
+      <img src="https://i.ibb.co/JwMfqQtQ/web.png" alt="Website Preview" class="relative z-10 w-full h-auto rounded-3xl" />
+    </div>
+  </main>
+
+  <!-- MARQUEE -->
+  <section class="overflow-hidden bg-gray-100 py-2">
+    <div class="whitespace-nowrap animate-scroll">
+      <span class="inline-block px-6 text-purple-600">🚀 Launching our new product next week!</span>
+      <span class="inline-block px-6 text-purple-600">🎉 50% off all websites until Sale Ends!</span>
+      <span class="inline-block px-6 text-indigo-600">🚀 Get a website for just ₹799</span>
+      <span class="inline-block px-6 text-purple-600">📰 Subscribe to our WhatsApp for updates.</span>
+      <span class="inline-block px-6 text-purple-600">💡 Got feedback? We’d love to hear from you.</span>
+      <span class="inline-block px-6 text-indigo-600">🚀 Get a website for just ₹799</span>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about" class="about-hero text-center py-40 px-6">
+    <h1 class="text-5xl font-bold mb-4">About Acefor.Labs</h1>
+    <p class="max-w-2xl mx-auto text-lg mb-8">We craft best-in-class websites, logos, labels, ads, cards and more—blending strategy, design, and cutting-edge tech to elevate your brand.</p>
+    <a href="#services" class="btn-primary">Explore Our Services</a>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 px-6">
+      <div class="info-card">
+        <h2 class="text-2xl font-semibold mb-2">Our Mission</h2>
+        <p>To empower businesses with stunning online experiences that drive engagement, conversion, and growth.</p>
+      </div>
+      <div class="info-card">
+        <h2 class="text-2xl font-semibold mb-2">Our Vision</h2>
+        <p>To be the go-to creative partner, renowned for innovation, quality, and unmatched customer delight.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-40 text-center">
+    <h2 class="text-5xl font-bold mb-8 text-grey">Our Services</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto px-6">
+      <a href="Logo.html" class="service-card">
+        <div class="text-5xl mb-4">🖌️</div>
+        <h3>Logo Design <br> <span class="service-status-active">Click To Visit</span></h3>
+      </a>
+      <a href="advertisment.html" class="service-card">
+        <div class="text-5xl mb-4">📢</div>
+        <h3>Advertisement <br> <span class="service-status-active">Click To Visit</span></h3>
+      </a>
+      <a href="portfolio.html" class="service-card">
+        <div class="text-5xl mb-4">👩‍💼</div>
+        <h3>Portfolio <br> <span class="service-status-active">Click To Visit</span></h3>
+      </a>
+      <a href="website.html" class="service-card">
+        <div class="text-5xl mb-4">💻</div>
+        <h3>Website Design <br> <span class="service-status-active">Click To Visit</span></h3>
+      </a>
+      <a href="#contact" class="service-card">
+        <div class="text-5xl mb-4">🏷️</div>
+        <h3>Label Design <br> <span class="service-status-dev">Under Development</span></h3>
+      </a>
+      <a href="#contact" class="service-card">
+        <div class="text-5xl mb-4">🎉</div>
+        <h3>Birthday Cards <br> <span class="service-status-dev">Under Development</span></h3>
+      </a>
+      <a href="#contact" class="service-card">
+        <div class="text-5xl mb-4">🌟</div>
+        <h3>Web Applications <br> <span class="service-status-dev">Under Development</span></h3>
+      </a>
+      <a href="Video editing.html" class="service-card">
+        <div class="text-5xl mb-4">🎬</div>
+        <h3>Video Editing <br> <span class="service-status-active">Click To Visit</span></h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section class="py-16 ">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6">Our Core Values</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="info-card"><span class="text-4xl mb-2">🤝</span><h3 class="font-semibold mb-1">Collaboration</h3><p>We partner closely to bring your vision to life.</p></div>
+        <div class="info-card"><span class="text-4xl mb-2">💡</span><h3 class="font-semibold mb-1">Creativity</h3><p>We push boundaries with bold, original ideas.</p></div>
+        <div class="info-card"><span class="text-4xl mb-2">⚙️</span><h3 class="font-semibold mb-1">Precision</h3><p>We sweat the details to ensure flawless delivery.</p></div>
+        <div class="info-card"><span class="text-4xl mb-2">🚀</span><h3 class="font-semibold mb-1">Impact</h3><p>We measure success by the results we generate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8">Meet The Team</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="team-card"><img src="https://i.ibb.co/d08BftRH/team-member.png" alt="Jane Doe" class="mx-auto rounded-full mb-4"/><h3 class="font-semibold mb-1">Shantanu Kumar</h3><p class="text-sm mb-2">Lead Designer</p><p>Crafting visual identities that stand out.</p></div>
+        <div class="team-card"><img src="https://i.ibb.co/B5tdsv5S/team-member-2.png" alt="John Smith" class="mx-auto rounded-full mb-4"/><h3 class="font-semibold mb-1">Shantanu Kumar</h3><p class="text-sm mb-2">Frontend Dev</p><p>Building pixel-perfect, responsive websites.</p></div>
+        <div class="team-card"><img src="https://i.ibb.co/d08BftRH/team-member.png" alt="Sara Lee" class="mx-auto rounded-full mb-4"/><h3 class="font-semibold mb-1">Lav Kumar</h3><p class="text-sm mb-2">Brand Strategist</p><p>Defining messages that resonate.</p></div>
+        <div class="team-card"><img src="https://i.ibb.co/B5tdsv5S/team-member-2.png" alt="Mike Chen" class="mx-auto rounded-full mb-4"/><h3 class="font-semibold mb-1">Shashi Kumar</h3><p class="text-sm mb-2">Fullstack Dev</p><p>Integrating tools to power your growth.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-gray-300 my-8" />
+
+  <!-- OUR WORK -->
+  <section id="work" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-4xl font-bold mb-4">Our Recent Work</h1>
+      <h3 class="text-lg text-gray-600 dark:text-gray-400 mb-12">
+        Here are a few projects we're proud to have worked on.
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="work-card">
+          <img src="images/bgremover2.png" alt="Background Remover Project" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">AI Background Remover</h3>
+            <p class="text-sm mb-4">A powerful web-based tool that uses AI to instantly remove the background from any image with a single click.</p>
+            <a href="#" class="work-card-btn">Explore The Project</a>
+          </div>
+        </div>
+        <div class="work-card" style="animation-delay: 0.15s;">
+          <img src="images/stockmarket.jpg" alt="Stock Market Institute Website" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Stock Market Institute</h3>
+            <p class="text-sm mb-4">An informational website for a financial education center, featuring course details and student testimonials.</p>
+            <a href="#" class="work-card-btn">Explore The Project</a>
+          </div>
+        </div>
+        <div class="work-card" style="animation-delay: 0.3s;">
+          <img src="images/portfolio.jpg" alt="Portfolio Websites Project" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Creative Portfolio Websites</h3>
+            <p class="text-sm mb-4">A collection of stunning, custom-built portfolio sites for designers, developers, and artists to showcase their work.</p>
+            <a href="#" class="work-card-btn">Explore The Project</a>
+          </div>
+        </div>
+        <div class="work-card" style="animation-delay: 0.45s;">
+          <img src="images/universitywebsite.jpg" alt="University Website Project" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">University Website</h3>
+            <p class="text-sm mb-4">A comprehensive and accessible website for a university, featuring department pages, news, and an events calendar.</p>
+            <a href="#" class="work-card-btn">Explore The Project</a>
+          </div>
+        </div>
+        <div class="work-card" style="animation-delay: 0.6s;">
+          <img src="images/invoicecraft.jpg" alt="Receipt Generator App" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Receipt Generator & Dashboard</h3>
+            <p class="text-sm mb-4">A full-stack web application for businesses to generate digital receipts and track sales through a secure admin dashboard.</p>
+            <a href="#" class="work-card-btn">Explore The Project</a>
+          </div>
+        </div>
+        <div class="work-card" style="animation-delay: 0.75s;">
+          <img src="https://placehold.co/600x400/f04e9a/ffffff?text=Coming+Soon" alt="Coming Soon" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Your Project Here</h3>
+            <p class="text-sm mb-4">We're always looking for the next exciting challenge. Let's build something amazing for your brand together.</p>
+            <a href="#contact" class="btn-primary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="py-16 bg-gradient-to-br from-indigo-600 to-pink-500 text-white text-center px-6">
+    <h2 class="text-3xl font-bold mb-4">Ready to Elevate Your Brand?</h2>
+    <p class="mb-8 max-w-xl mx-auto">Let’s build something amazing together. Reach out and let’s get started!</p>
+    <a href="#contact" class="btn-primary">Contact Us</a>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section id="contact" class="py-12">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-6 text-center">Get in Touch</h2>
+      <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="space-y-4 max-w-2xl mx-auto px-6">
+        <input type="hidden" name="access_key" value="c1bcadbb-aace-47f8-8373-29d9df085472" />
+        <input type="hidden" name="redirect" value="javascript:void(0);" />
+        <input type="text" name="name" required placeholder="Your Name" class="w-full px-4 py-2 rounded-lg" />
+        <input type="email" name="email" required placeholder="Your Email" class="w-full px-4 py-2 rounded-lg" />
+        <input type="tel" name="contact" required placeholder="Mobile Number" class="w-full px-4 py-2 rounded-lg" />
+        <textarea name="message" rows="4" required placeholder="Your Message" class="w-full px-4 py-2 rounded-lg"></textarea>
+        <div id="form-status" class="text-center text-sm font-medium" style="display: none;"></div>
+        <div class="text-center">
+          <button type="submit" class="btn-primary">Send Message</button>
+          <div class="mt-4">
+            <p class="text-sm text--var(--bg)">Or chat with us directly:</p><br>
+            <!-- The inline style on this button has been moved to styles.css -->
+            <button id="whatsapp-button" class="whatsapp-btn" onclick="window.open('https://wa.me/+918789673274?text=Hello! I\'m interested in your Editing/Website Services on ace4Labs.', '_blank')">
+              <img src="whatsapp.webp" alt="WhatsApp Icon"> Chat On Whatsapp
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- WHATSAPP WIDGET -->
+  <div id="whatsapp-widget" class="whatsapp-widget">
+    <a href="https://wa.me/+918789673274?text=Hello! I'm interested in your Editing/Website Services on ace4Labs." target="_blank" rel="noopener noreferrer" class="whatsapp-widget-link">
+      <img src="whatsapp.webp" alt="WhatsApp Icon" class="whatsapp-widget-icon">
+      <h3>Chat On Whatsapp</h3>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-8 footer-section">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
+      <div id="footer-logo" class="flex items-center gap-2 mb-4 md:mb-0">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="text-current">
+          <circle cx="12" cy="12" r="11"/>
+          <path d="M8 16v-8h8"/>
+          <path d="M12 20v-16"/>
+        </svg>
+        <span class="text-xl font-bold text-current">acefor.labs</span>
+      </div>
+      <nav class="flex flex-wrap gap-6 justify-center">
+        <a href="#home" class="hover:underline text-current">Home</a>
+        <a href="#services" class="hover:underline text-current">Services</a>
+        <a href="#about" class="hover:underline text-current">About Us</a>
+        <a href="#contact" class="hover:underline text-current">Contact</a>
+      </nav>
+    </div>
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 mt-6">
+      <span class="text-sm">Follow us:</span>
+      <a href="https://www.instagram.com/ace4labs?igsh=eDJieHRxZ2VjYndn" class="fa fa-facebook"></a>
+      <a href="https://www.instagram.com/ace4labs?igsh=eDJieHRxZ2VjYndn" class="fa fa-instagram"></a>
+      <a href="https://www.instagram.com/ace4labs?igsh=eDJieHRxZ2VjYndn" class="fa fa-google"></a>
+      <a href="https://www.instagram.com/ace4labs?igsh=eDJieHRxZ2VjYndn" class="fa fa-twitter"></a>
+    </div>
+    <p class="mt-6 text-center text-sm footer-copyright">© 2025 Acefor.Labs — Designed with 💜 & code.</p>
+  </footer>
+
+  <!-- External & Local Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
+  <script src="https://files.bpcontent.cloud/2025/07/05/21/20250705212022-REZU1E35.js" defer></script>
+  <script src="script.js" defer></script>
+
+</body>
+</html>
