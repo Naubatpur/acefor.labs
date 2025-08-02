@@ -19,40 +19,45 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="flex items-center justify-between px-6 py-4 max-w-5xl mx-auto">
-    <div class="flex items-center gap-2 cursor-pointer">
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="11"/>
-        <path d="M8 16v-8h8"/>
-        <path d="M12 20v-16"/>
-      </svg>
-      <span class="font-bold text-xl">acefor.labs</span>
-    </div>
-    <div class="nav-links flex gap-6 font-medium">
-      <a href="#home" class="hover:text-indigo-600">Home</a>
-      <a href="#services" class="hover:text-indigo-600">Services</a>
-      <a href="#work" class="hover:text-indigo-600">Our Work</a>
-      <a href="#about" class="hover:text-indigo-600">About Us</a>
-      <a href="#contact" class="hover:text-indigo-600">Contact</a>
-    </div>
-    <div class="flex items-center gap-4">
-      <button id="theme-toggle" class="btn btn-secondary text-sm">Dark Mode</button>
-      <div class="hamburger space-y-1">
-        <span class="block w-6 h-0.5 bg-current"></span>
-        <span class="block w-6 h-0.5 bg-current"></span>
-        <span class="block w-6 h-0.5 bg-current"></span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div id="mobile-menu" class="px-6 pb-4 max-w-5xl mx-auto">
-    <a href="#home" class="block py-2">Home</a>
-    <a href="#services" class="block py-2">Services</a>
-    <a href="#work" class="block py-2">Our Work</a>
-    <a href="#about" class="block py-2">About Us</a>
-    <a href="#contact" class="block py-2">Contact</a>
+<nav class="flex items-center justify-between px-6 py-4 max-w-5xl mx-auto">
+  <div class="flex items-center gap-2 cursor-pointer">
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="11"/>
+      <path d="M8 16v-8h8"/>
+      <path d="M12 20v-16"/>
+    </svg>
+    <span class="font-bold text-xl">acefor.labs</span>
   </div>
+
+
+  <div class="nav-links hidden md:flex gap-6 font-medium">
+    <a href="#home" class="hover:text-indigo-600">Home</a>
+    <a href="#services" class="hover:text-indigo-600">Services</a>
+    <a href="#work" class="hover:text-indigo-600">Our Work</a>
+    <a href="#about" class="hover:text-indigo-600">About Us</a>
+    <a href="#contact" class="hover:text-indigo-600">Contact</a>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <button id="theme-toggle" class="btn btn-secondary text-sm">Dark Mode</button>
+    
+
+    <div class="hamburger md:hidden space-y-1">
+      <span class="block w-6 h-0.5 bg-current"></span>
+      <span class="block w-6 h-0.5 bg-current"></span>
+      <span class="block w-6 h-0.5 bg-current"></span>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="hidden px-6 pb-4 max-w-5xl mx-auto">
+  <a href="#home" class="block py-2">Home</a>
+  <a href="#services" class="block py-2">Services</a>
+  <a href="#work" class="block py-2">Our Work</a>
+  <a href="#about" class="block py-2">About Us</a>
+  <a href="#contact" class="block py-2">Contact</a>
+</div>
+
 
   <!-- HERO -->
   <main id="home" class="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto p-6">
@@ -335,6 +340,7 @@
 
 </body>
 </html>
+
 
 
 
