@@ -348,4 +348,25 @@ footer {
 }
 .footer-copyright {
     color: var(--footer-text);
+
+}
+
+/* This is the main fix. It prevents any element from breaking 
+   out of the screen horizontally and causing a scrollbar. */
+body {
+  overflow-x: hidden;
+}
+
+/* This makes sure the marquee container itself doesn't cause issues. */
+.marquee-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* This makes the WhatsApp button in the form responsive */
+.contact-form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Adds space between the buttons */
 }
