@@ -1,8 +1,21 @@
+/*
+  styles.css
+  This is the complete and final stylesheet for your website.
+  It includes all necessary styles for all sections and components.
+*/
 
+/*
+================================
+1. Base & Theme Styles
+================================
+*/
+
+/* Smooth scrolling for anchor links */
 html { 
   scroll-behavior: smooth; 
 }
 
+/* Theme variables for light and dark mode */
 :root {
   --accent: #6b5bfa;
   --primary-bg: #ffffff;
@@ -21,6 +34,7 @@ html {
   --footer-text: #9ca3af;
 }
 
+/* Base body styles and mobile overflow fix */
 html, body {
   margin: 0; 
   padding: 0;
@@ -28,15 +42,22 @@ html, body {
   color: var(--primary-text);
   font-family: "Inter", sans-serif;
   transition: var(--transition);
-  overflow-x: hidden; 
+  overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 
+/*
+================================
+2. Animations
+================================
+*/
+
+/* Fade-in-up animation */
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
+/* Marquee animation */
 @keyframes marquee-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-60%); }
@@ -48,13 +69,19 @@ html, body {
   animation: marquee-scroll 12s linear infinite;
 }
 
+/*
+================================
+3. Reusable Components (Buttons, etc.)
+================================
+*/
 
+/* Hero heading animation */
 .hero-heading {
   opacity: 0; 
   animation: fade-in-up .8s ease-out .3s forwards;
 }
 
-
+/* Button styles and animations */
 .btn {
   opacity: 0; 
   transform: translateY(20px);
@@ -73,9 +100,10 @@ html, body {
 .btn-primary:hover { transform: scale(1.05); }
 .btn-secondary:hover { background: var(--accent); color: #fff; transform: scale(1.05); }
 
+
 /*
 ================================
-Section & Card Styles
+4. Section & Card Styles
 ================================
 */
 
@@ -94,6 +122,50 @@ Section & Card Styles
 #services {
   background: linear-gradient(135deg, rgba(107,91,250,0.12), rgba(240,78,154,0.12));
 }
+
+/* Service Card Styles (Complete) */
+.service-card {
+  display: flex; flex-direction: column; align-items: center; text-decoration: none; 
+  color: inherit; background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-radius: .75rem; padding: 1.5rem;
+  transition: var(--transition); will-change: transform;
+  opacity: 0; animation: fade-in-up .6s ease-out forwards;
+}
+.service-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(107, 91, 250, 0.2);
+  color: var(--accent);
+}
+[data-theme="dark"] .service-card {
+  background: rgba(31,41,55,0.3); border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Work Card Styles (Complete) */
+.work-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 1rem; /* 16px */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow: hidden; /* Ensures the image corners are rounded */
+  transition: all 0.3s ease-in-out;
+  will-change: transform;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+.work-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(107, 91, 250, 0.2); /* Accent color shadow */
+}
+[data-theme="dark"] .work-card {
+  background: rgba(31, 41, 55, 0.4); /* dark:bg-gray-800 with transparency */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 
 /* Generic Info Card (Used in Mission/Vision and Core Values) */
 .info-card {
@@ -123,9 +195,10 @@ Section & Card Styles
   box-shadow: 0 6px 20px rgba(0,0,0,.2);
 }
 
+
 /*
 ================================
-Styles Moved from Inline HTML
+5. Styles Moved from Inline HTML
 ================================
 */
 
